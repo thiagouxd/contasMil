@@ -1,6 +1,6 @@
 import Card from "./Card"
 
-export default () => {
+const Expenses = () => {
   return (
     <>
       <h1>Gastos infinitos</h1>
@@ -11,3 +11,5 @@ export default () => {
     </>
   )
 }
+
+export default Expenses
