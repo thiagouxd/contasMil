@@ -1,15 +1,38 @@
-import Card from "./Card"
+import Card from "./Card";
+import { getExpenseData } from "../../api";
+import { useEffect, useState } from "react";
+
+type ExpenseName = {
+  name: string;
+  totalValue: number;
+  id: number;
+};
 
 const Expenses = () => {
+  const [expenses, setExpenses] = useState([]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      getExpenseData().then((res) => setExpenses(res));
+    }, 1);
+  }, [setExpenses]);
+
   return (
     <>
       <h1>Gastos infinitos</h1>
-      <Card title="Gasto"
-        stipulated="42,90"
-        used="42,90"
-        balance="42,90" />
+      {expenses?.map((expense: ExpenseName) => {
+        return (
+          <Card
+            key={expense.id}
+            title={expense.name}
+            stipulated={expense.totalValue}
+            used={expense.totalValue}
+            balance={expense.totalValue}
+          />
+        );
+      })}
     </>
-  )
-}
+  );
+};
 
-export default Expenses
+export default Expenses;
