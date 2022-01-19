@@ -1,15 +1,9 @@
-import { useEffect, useState } from 'react'
-import styled from 'styled-components'
+import { useEffect, useState } from "react";
+import styled from "styled-components";
 
-const Tag = (props: {
-  text: String,
-}) => {
-  return (
-    <TagStyled>
-      {props.text}
-    </TagStyled >
-  )
-}
+const Tag = (props: { text: String }) => {
+  return <TagStyled>{props.text}</TagStyled>;
+};
 
 const TagStyled = styled.span`
   display: inline-flex;
@@ -25,6 +19,6 @@ const TagStyled = styled.span`
   padding: 0px 8px;
   background: hsla(117, 67%, 94%, 1);
   border-radius: 24px;
-`
+`;
 
-export default Tag
+export default Tag;
