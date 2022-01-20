@@ -6,6 +6,7 @@ import DailyExpensesForm from "./pages/DailyExpensesForm";
 import ExpenseForm from "./pages/ExpenseForm";
 import { initializeApp } from "firebase/app";
 import { useEffect } from "react";
+import styled from "styled-components";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCJe_23TBqZCo9fYCeRSqBoKOaGP0W7p6k",
@@ -24,14 +25,14 @@ function App() {
 
   return (
     <Router>
-      <ul>
+      <List>
         <li>
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/expense-form">Adicionar</Link>
+          <Link to="/expense-form">Adicionar novo</Link>
         </li>
-      </ul>
+      </List>
       <Routes>
         <Route path="/" element={<Expenses />} />
         <Route path="/expense-details" element={<ExpenseDetails />} />
@@ -43,3 +44,19 @@ function App() {
 }
 
 export default App;
+
+const List = styled.ul`
+  display: flex;
+  padding: 16px;
+  margin-top: 0px;
+  list-style: none;
+  background: #333;
+  li {
+    margin-right: 16px;
+    font-size: 16px;
+    font-weight: bold;
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+`;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getExpenseData, writeExpenseData } from "../../api";
+import { writeExpenseData } from "../../api";
 
 const ExpenseForm = () => {
   const [data, setData] = useState({});
@@ -31,11 +31,6 @@ const ExpenseForm = () => {
       </div>
       <div>
         <button type="submit">Cadastrar novo gastoo</button>
-      </div>
-      <div>
-        <button type="button" onClick={() => getExpenseData()}>
-          Obter dados
-        </button>
       </div>
     </form>
   );
