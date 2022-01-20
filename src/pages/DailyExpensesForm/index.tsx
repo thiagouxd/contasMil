@@ -1,53 +1,67 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { getDailyExpenseData, writeDailyExpenseData } from "../../api";
+import { writeDailyExpenseData } from "../../api";
+import Button from "../../components/Button";
+import Input from "../../components/Input";
 
 type DataType = {
   date: string;
-  value: number;
+  value: string;
 };
 
 const DailyExpensesForm = () => {
-  const [data, setData] = useState<DataType>({ date: "", value: 0 });
+  const [data, setData] = useState<DataType>({ date: "", value: "" });
   const search = useLocation().search;
   const idExpense = new URLSearchParams(search).get("idExpense");
   const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
     data.date && data.value && setDisabled(false);
-  });
+  }, [data]);
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        writeDailyExpenseData(idExpense, { ...data });
+        writeDailyExpenseData(idExpense, {
+          date: data.date,
+          value: Number(data.value),
+        }).then((res) => {
+          setData({ date: "", value: "" });
+        });
       }}
     >
       <div>
         <label>Data</label>
-        <input
+        <Input
           type="date"
           name="date"
           id="date"
-          onChange={(e) => setData({ ...data, date: e.target.value })}
+          value={data.date}
+          onChange={(e: FormEvent<HTMLInputElement>) =>
+            setData({ ...data, date: e.currentTarget.value })
+          }
         />
       </div>
 
       <div>
         <label>Valor</label>
-        <input
-          type="text"
+        <Input
+          step=".01"
+          type="number"
           name="value"
           id="value"
-          onChange={(e) => setData({ ...data, value: Number(e.target.value) })}
+          value={data.value}
+          onChange={(e: FormEvent<HTMLInputElement>) =>
+            setData({ ...data, value: e.currentTarget.value })
+          }
         />
       </div>
 
       <div>
-        <button disabled={disabled} type="submit">
+        <Button disabled={disabled} type="submit">
           Criar um gasto diário
-        </button>
+        </Button>
       </div>
     </form>
   );

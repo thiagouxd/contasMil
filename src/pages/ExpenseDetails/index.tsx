@@ -4,6 +4,7 @@ import { getExpenseData } from "../../api";
 import { addExpenses } from "../../utils/addExpenses";
 import Chart from "../../components/Chart";
 import { arrayOfDays } from "../../utils/daysInTheMonth";
+import Button from "../../components/Button";
 
 const ExpenseDetails = () => {
   const search = useLocation().search;
@@ -17,36 +18,38 @@ const ExpenseDetails = () => {
         const data = res.filter((item: any) => {
           return item?.id === Number(idExpense);
         });
-        setExpense(data);
+        setExpense(data[0]);
       });
     }, 1);
-  }, []);
+  }, [idExpense]);
 
   return (
     <div>
-      {expense?.map((item: any) => {
-        return (
-          <div key={item.id}>
-            <p>{item.name}</p>
-            <p>{item.totalValue}</p>
-            <p>{addExpenses(item.dailyExpense)}</p>
-            <button
-              onClick={() =>
-                navigate(`/daily-expenses-form?idExpense=${item.id}`)
-              }
-            >
-              Gasto do dia
-            </button>
-            {item.dailyExpense && (
+      {expense && (
+        <>
+          <p>{expense.name}</p>
+          <p>{expense.totalValue}</p>
+          <p>{addExpenses(expense.dailyExpense)}</p>
+          <Button
+            type="button"
+            onClick={() =>
+              navigate(`/daily-expenses-form?idExpense=${expense.id}`)
+            }
+          >
+            Gasto do dia
+          </Button>
+
+          {expense.dailyExpense && (
+            <div style={{ position: "relative" }}>
               <Chart
                 data={arrayOfDays()}
-                totalValue={item.totalValue}
-                dailyExpenses={item.dailyExpense}
+                totalValue={expense.totalValue}
+                dailyExpenses={expense.dailyExpense}
               />
-            )}
-          </div>
-        );
-      })}
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 };
