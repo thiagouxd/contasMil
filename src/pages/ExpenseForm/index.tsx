@@ -46,6 +46,7 @@ const ExpenseForm = () => {
           type="number"
           name="total-value"
           id="total-value"
+          inputmode="decimal"
           onChange={(e: FormEvent<HTMLInputElement>) =>
             setData({ ...data, totalValue: e.currentTarget.value })
           }
