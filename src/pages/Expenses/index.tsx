@@ -6,6 +6,7 @@ type ExpenseName = {
   name: string;
   totalValue: number;
   id: number;
+  dailyExpense: any;
 };
 
 const Expenses = () => {
@@ -13,9 +14,11 @@ const Expenses = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      getExpenseData().then((res) => setExpenses(res));
+      getExpenseData().then((res) => {
+        setExpenses(res);
+      });
     }, 1);
-  }, [setExpenses]);
+  }, []);
 
   return (
     <>
@@ -24,10 +27,11 @@ const Expenses = () => {
         return (
           <Card
             key={expense.id}
+            idExpense={expense.id}
             title={expense.name}
             stipulated={expense.totalValue}
-            used={expense.totalValue}
             balance={expense.totalValue}
+            dailyExpense={expense.dailyExpense}
           />
         );
       })}

@@ -1,14 +1,23 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import styled from "styled-components";
 import Tag from "../../components/Tag";
+import { addExpenses } from "../../utils/addExpenses";
 
 export default (props: {
   title: String;
   stipulated: number;
-  used: number;
   balance: number;
+  idExpense: number;
+  dailyExpense: Array<object>;
 }) => {
+  const navigate = useNavigate();
+
   return (
-    <Container>
+    <Container
+      tabIndex={0}
+      onClick={() => navigate(`/expense-details?idExpense=${props.idExpense}`)}
+    >
       <Header>
         <Title>{props.title}</Title>
         <Tag text="Cagou nas Zorba" />
@@ -17,12 +26,17 @@ export default (props: {
         <p>
           Valor estipulado: <strong>R${props.stipulated}</strong>
         </p>
-        <p>
-          Saldo utilizado: <strong>R${props.used}</strong>
-        </p>
-        <p>
+
+        {props.dailyExpense && (
+          <p>
+            Saldo utilizado:{" "}
+            <strong>R${addExpenses(props.dailyExpense)}</strong>
+          </p>
+        )}
+
+        {/* <p>
           Saldo para o dia: <strong>R${props.balance}</strong>
-        </p>
+        </p> */}
       </Description>
     </Container>
   );
@@ -48,6 +62,11 @@ const Container = styled.div`
   margin-right: 24px;
   padding: 16px;
   margin-bottom: 16px;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    background: #333;
+  }
 `;
 
 const Description = styled.div`

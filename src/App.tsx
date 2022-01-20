@@ -26,16 +26,10 @@ function App() {
     <Router>
       <ul>
         <li>
-          <Link to="/">Expenses</Link>
+          <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/expense-details">ExpenseDetails</Link>
-        </li>
-        <li>
-          <Link to="/daily-expenses-form">DailyExpensesForm</Link>
-        </li>
-        <li>
-          <Link to="/expense-form">ExpenseForm</Link>
+          <Link to="/expense-form">Adicionar</Link>
         </li>
       </ul>
       <Routes>

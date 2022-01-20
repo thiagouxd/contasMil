@@ -23,7 +23,7 @@ export const writeExpenseData = async (obj: object) => {
 export const getExpenseData = async () => {
   const dbRef = ref(getDatabase());
   let data;
-  
+
   try {
     const snapshot = await get(child(dbRef, "expenses/"));
     if (snapshot.exists()) {
@@ -39,7 +39,7 @@ export const getExpenseData = async () => {
 };
 
 export const writeDailyExpenseData = async (
-  idExpense: number,
+  idExpense: any,
   dailyExpense: object
 ) => {
   const db = getDatabase();
@@ -52,7 +52,7 @@ export const writeDailyExpenseData = async (
   };
 
   try {
-    const expenseDailyId = (await getDailyExpenseData(1))?.length + 1;
+    const expenseDailyId = (await getDailyExpenseData(idExpense))?.length + 1;
 
     setData(idExpense, expenseDailyId || 1);
   } catch (error) {
@@ -60,7 +60,7 @@ export const writeDailyExpenseData = async (
   }
 };
 
-export const getDailyExpenseData = async (expenseId: number) => {
+export const getDailyExpenseData = async (expenseId: any) => {
   const dbRef = ref(getDatabase());
   let data;
 
