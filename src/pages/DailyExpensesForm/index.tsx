@@ -22,10 +22,10 @@ const DailyExpensesForm = () => {
       />
 
       <input
-        type="number"
+        type="text"
         name="value"
         id="value"
-        onChange={(e) => setData({ ...data, value: e.target.value })}
+        onChange={(e) => setData({ ...data, value: Number(e.target.value) })}
       />
 
       <button type="submit">Criar um gasto diário</button>

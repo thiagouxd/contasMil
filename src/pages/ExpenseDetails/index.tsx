@@ -37,11 +37,13 @@ const ExpenseDetails = () => {
             >
               Gasto do dia
             </button>
-            <Chart
-              data={arrayOfDays()}
-              totalValue={item.totalValue}
-              dailyExpenses={item.dailyExpense}
-            />
+            {item.dailyExpense && (
+              <Chart
+                data={arrayOfDays()}
+                totalValue={item.totalValue}
+                dailyExpenses={item.dailyExpense}
+              />
+            )}
           </div>
         );
       })}

@@ -38,7 +38,6 @@ export const generateValuesOfTheMonth = (value: any) => {
 };
 
 export const generateValuesOfTheDay = (value: any, dailyExpenses: any) => {
-  const teste = { day: 14, value: 600 };
   const day = data.getDate();
   const array = new Array(day);
 
@@ -50,7 +49,7 @@ export const generateValuesOfTheDay = (value: any, dailyExpenses: any) => {
     let value: number;
 
     const valueChanged = filterDailyExpenses.filter(
-      (value: any) => index == value.date.split("-")[2]
+      (value: any) => index + 1 == value.date.split("-")[2]
     );
 
     if (valueChanged.length) {
@@ -62,11 +61,23 @@ export const generateValuesOfTheDay = (value: any, dailyExpenses: any) => {
 
   for (var i = 0; i < array.length; i++) {
     if (i === 0) {
-      newArray.push(Number(value));
+      const firstValueChanged = filterDailyExpenses.some(
+        (value: any) => i == value.date.split("-")[2] - 1
+      );
+
+      if (firstValueChanged) {
+        filterDailyExpenses.filter((item: any) => {
+          if (item.date.split("-")[2] - 1 == 0) {
+            newArray.push(item.value);
+          }
+        });
+      } else {
+        newArray.push(value);
+      }
     } else {
-      const value = sub(i, newArray[i - 1]);
+      const valueChanged = sub(i, newArray[i - 1]);
       newArray.push(
-        Number((Math.round((value as number) * 100) / 100).toFixed(2))
+        Number((Math.round((valueChanged as number) * 100) / 100).toFixed(2))
       );
     }
   }
