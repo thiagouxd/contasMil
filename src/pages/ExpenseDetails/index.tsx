@@ -5,6 +5,7 @@ import { addExpenses } from "../../utils/addExpenses";
 import Chart from "../../components/Chart";
 import { arrayOfDays } from "../../utils/daysInTheMonth";
 import Button from "../../components/Button";
+import styled from "styled-components";
 
 const ExpenseDetails = () => {
   const search = useLocation().search;
@@ -24,7 +25,7 @@ const ExpenseDetails = () => {
   }, [idExpense]);
 
   return (
-    <div>
+    <Container>
       {expense && (
         <>
           <p>{expense.name}</p>
@@ -50,8 +51,12 @@ const ExpenseDetails = () => {
           )}
         </>
       )}
-    </div>
+    </Container>
   );
 };
 
 export default ExpenseDetails;
+
+const Container = styled.div`
+  padding: 0 16px;
+`;

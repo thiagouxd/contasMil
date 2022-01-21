@@ -64,5 +64,5 @@ const ExpenseForm = () => {
 export default ExpenseForm;
 
 const Form = styled.form`
-  padding: 16px 24px;
+  padding: 0 16px;
 `;

@@ -1,23 +1,31 @@
-import styled from "styled-components";
+import { useEffect, useState } from "react";
+import { TagStyled } from "./Tag.styled";
+import { TagStyledProps, TagType } from "./Tag.types";
 
-const Tag = (props: { text: String }) => {
-  return <TagStyled>{props.text}</TagStyled>;
+const generateColor = (status: string) => {
+  if (status === "success")
+    return { color: "#04BB00", backgroundColor: "#E7FAE6" };
+  if (status === "alert")
+    return { color: "#FF0D0D", backgroundColor: "#FAE6E6" };
+  if (status === "attention")
+    return { color: "#FF800B", backgroundColor: "#FAF2E6" };
 };
 
-const TagStyled = styled.span`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 9px;
-  line-height: 11px;
-  text-transform: uppercase;
-  color: hsla(119, 100%, 37%, 1);
-  height: 20px;
-  padding: 0px 8px;
-  background: hsla(117, 67%, 94%, 1);
-  border-radius: 24px;
-`;
+const Tag = ({ text, status }: TagType) => {
+  const [type, setType] = useState<TagStyledProps>();
+
+  useEffect(() => {
+    setType(generateColor(status));
+  }, [status]);
+
+  return (
+    <TagStyled
+      color={type?.color as string}
+      backgroundColor={type?.backgroundColor as string}
+    >
+      {text}
+    </TagStyled>
+  );
+};
 
 export default Tag;

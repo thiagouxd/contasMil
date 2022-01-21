@@ -1,5 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import styled from "styled-components";
 import { writeDailyExpenseData } from "../../api";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
@@ -20,7 +21,7 @@ const DailyExpensesForm = () => {
   }, [data]);
 
   return (
-    <form
+    <Form
       onSubmit={(e) => {
         e.preventDefault();
         writeDailyExpenseData(idExpense, {
@@ -64,8 +65,12 @@ const DailyExpensesForm = () => {
           Criar um gasto diário
         </Button>
       </div>
-    </form>
+    </Form>
   );
 };
 
 export default DailyExpensesForm;
+
+const Form = styled.form`
+  padding: 0 16px;
+`;
