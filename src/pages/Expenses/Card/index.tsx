@@ -16,8 +16,8 @@ const Card = ({
 
   const statusCard = () => {
     return stipulated < addExpenses(dailyExpense)
-      ? { status: "success", text: "Continuar forte!" }
-      : { status: "alert", text: "Fez merda, pae!" };
+      ? { status: "alert", text: "Fez merda, pae!" }
+      : { status: "success", text: "Continuar forte!" };
   };
 
   return (
@@ -34,12 +34,12 @@ const Card = ({
       </Header>
       <Description>
         <p>
-          Valor estipulado: <strong>R${stipulated}</strong>
+          Valor estipulado: <strong>R$ {stipulated}</strong>
         </p>
 
         {dailyExpense && (
           <p>
-            Saldo utilizado: <strong>R${addExpenses(dailyExpense)}</strong>
+            Saldo utilizado: <strong>R$ {addExpenses(dailyExpense)}</strong>
           </p>
         )}
 

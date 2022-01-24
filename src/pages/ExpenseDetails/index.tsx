@@ -49,6 +49,17 @@ const ExpenseDetails = () => {
               />
             </div>
           )}
+
+          <ul>
+            {expense.dailyExpense &&
+              expense.dailyExpense.map((item: any) => {
+                return (
+                  <li>
+                    {item.value} {item.date}
+                  </li>
+                );
+              })}
+          </ul>
         </>
       )}
     </Container>
