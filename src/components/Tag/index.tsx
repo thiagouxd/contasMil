@@ -1,12 +1,20 @@
-import styled from 'styled-components'
+import styled, { css } from "styled-components";
 
 type TagTypes = {
-  status: string,
-  text: string
-}
+  status: "success" | "alert" | "attention";
+  text: string;
+};
 
-const Tag = ({status, text}:TagTypes) => {
-  const TagStyled = styled.span`
+type StatusProps = {
+  status: "success" | "alert" | "attention";
+};
+
+const Tag = ({ status, text }: TagTypes) => {
+  return <TagStyled status={status}>{text}</TagStyled>;
+};
+
+const TagStyled = styled.span<StatusProps>`
+  ${({ status }) => css`
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -20,34 +28,29 @@ const Tag = ({status, text}:TagTypes) => {
     padding: 0px 8px;
     background: ${generateColor(status)?.backgroundColor};
     border-radius: 24px;
-  `
-  return (
-    <TagStyled>
-      {text}
-    </TagStyled >
-  )
-}
+  `}
+`;
 
-const generateColor = (status:string) => {
-  if(status === 'success') {
+const generateColor = (status: string) => {
+  if (status === "success") {
     const successColors = {
-      backgroundColor: '#E7FAE6',
-      color: '#04BB00',
-    }
-    return successColors
-  } else if(status === 'alert') {
+      backgroundColor: "#E7FAE6",
+      color: "#04BB00",
+    };
+    return successColors;
+  } else if (status === "alert") {
     const alertColors = {
-      backgroundColor: '#FAE6E6',
-      color: '#FF0D0D',
-    }
-    return alertColors
-  } else if(status === 'attention') {
+      backgroundColor: "#FAE6E6",
+      color: "#FF0D0D",
+    };
+    return alertColors;
+  } else if (status === "attention") {
     const attentionColors = {
-      backgroundColor: '#FAF2E6',
-      color: '#FF800B',
-    }
-    return attentionColors
+      backgroundColor: "#FAF2E6",
+      color: "#FF800B",
+    };
+    return attentionColors;
   }
-}
+};
 
-export default Tag
+export default Tag;
