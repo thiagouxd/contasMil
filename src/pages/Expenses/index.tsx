@@ -1,15 +1,13 @@
-import Card from "./Card"
+import Header from "../../components/Header";
+import Card from "./Card";
 
 const Expenses = () => {
   return (
     <>
-      <h1>Gastos infinitos</h1>
-      <Card title="Gasto"
-        stipulated="42,90"
-        used="42,90"
-        balance="42,90" />
+      <Header hasBackButton subtitle="Caramba" title="Despesas infinitas" />
+      <Card title="Gasto" stipulated="42,90" used="42,90" balance="42,90" />
     </>
-  )
-}
+  );
+};
 
-export default Expenses
+export default Expenses;

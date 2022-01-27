@@ -14,20 +14,20 @@ const Tag = ({ status, text }: TagTypes) => {
 };
 
 const TagStyled = styled.span<StatusProps>`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 9px;
+  line-height: 11px;
+  text-transform: uppercase;
+  height: 20px;
+  padding: 0px 8px;
+  border-radius: 24px;
   ${({ status }) => css`
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 9px;
-    line-height: 11px;
-    text-transform: uppercase;
     color: ${generateColor(status)?.color};
-    height: 20px;
-    padding: 0px 8px;
     background: ${generateColor(status)?.backgroundColor};
-    border-radius: 24px;
   `}
 `;
 
