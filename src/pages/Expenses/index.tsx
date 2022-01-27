@@ -4,7 +4,7 @@ import Card from "./Card";
 const Expenses = () => {
   return (
     <>
-      <Header hasBackButton subtitle="Caramba" title="Despesas infinitas" />
+      <Header title="Despesas infinitas" />
       <Card title="Gasto" stipulated="42,90" used="42,90" balance="42,90" />
     </>
   );
