@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Button from "../../components/Button";
+import { Button } from "baseui/button";
 import Tag from "../../components/Tag";
 
 const Card = (props: {
@@ -25,9 +25,6 @@ const Card = (props: {
           Saldo para o dia: <strong>R${props.balance}</strong>
         </p>
       </Description>
-      <Button type="button" icon="add">
-        Oi
-      </Button>
     </Container>
   );
 };
